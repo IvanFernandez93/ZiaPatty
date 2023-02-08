@@ -1,0 +1,71 @@
+application {
+ 	config {
+    	baseName ZiaPatty
+    }
+    entities Audio, Categoria, Frase, Lingua, FraseLingua, FraseAudio, CategoriaFrase
+    dto * with mapstruct
+    service * with serviceClass 
+}
+entity Audio(ZP_AUDIO) {
+	@Id idAudio Long,
+    nome String,
+    codiceStato Stato,
+    track Blob,
+    dataCreazione ZonedDateTime,
+    dataUltimaModifica ZonedDateTime,
+    eliminato Boolean
+}
+entity Categoria(ZP_CATEGORIA) {
+	@Id idCategoria Long,
+    nome String,
+    idCategoriaPadre Long,
+    codiceStato Stato,
+    dataCreazione ZonedDateTime,
+    dataUltimaModifica ZonedDateTime,
+    eliminato Boolean
+}
+entity Frase(ZP_FRASE) {
+	idFrase Long,
+    frase String,
+    codiceStato Stato,
+    dataCreazione ZonedDateTime,
+    dataUltimaModifica ZonedDateTime,
+    eliminato Boolean
+}
+entity Lingua(ZP_LINGUA) {
+	@Id idLingua Long,
+	codiceLingua String,
+    nomeLingua String,
+    dataCreazione ZonedDateTime,
+    dataUltimaModifica ZonedDateTime,
+    eliminato Boolean
+}
+entity FraseAudio(ZP_FRASE_AUDIO) {
+	idCategoria Long,
+    idFrase Long
+}
+entity FraseLingua(ZP_FRASE_LINGUA) {
+	idLingua Long,
+    idFrase Long
+}
+entity CategoriaFrase(ZP_CATGORIA_FRASE) {
+    idCategoria Long,
+    idFrase Long
+}
+enum Stato {
+	BOZZA, PRIVATO, PUBBLICATO
+}
+relationship OneToMany {
+	Categoria{padre} to Categoria{categorieFiglie},
+    Categoria{categoriaFrase} to CategoriaFrase,
+    Frase{fraseCategoria} to CategoriaFrase,
+    Frase{listaAudio} to FraseAudio
+    Audio{listaFrasi} to FraseAudio
+}
+
+relationship ManyToOne {
+	Lingua{listaFrasi} to Frase
+}
+paginate Categoria, Frase with infinite-scroll
+paginate Job with pagination
+service all with serviceImpl except Employee, Job
