@@ -1,0 +1,27 @@
+{
+  "ziaPattyApp": {
+    "categoriaFrase": {
+      "home": {
+        "title": "Categoria Frases",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Categoria Frase",
+        "createOrEditLabel": "Create or edit a Categoria Frase",
+        "notFound": "No Categoria Frases found"
+      },
+      "created": "A new Categoria Frase is created with identifier {{ param }}",
+      "updated": "A Categoria Frase is updated with identifier {{ param }}",
+      "deleted": "A Categoria Frase is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Categoria Frase {{ id }}?"
+      },
+      "detail": {
+        "title": "Categoria Frase"
+      },
+      "id": "ID",
+      "idCategoria": "Id Categoria",
+      "idFrase": "Id Frase",
+      "categoria": "Categoria",
+      "frase": "Frase"
+    }
+  }
+}

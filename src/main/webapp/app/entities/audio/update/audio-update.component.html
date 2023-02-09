@@ -1,0 +1,129 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-audio-heading" data-cy="AudioCreateUpdateHeading" jhiTranslate="ziaPattyApp.audio.home.createOrEditLabel">
+        Create or edit a Audio
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.idAudio.value !== null">
+          <label class="form-label" jhiTranslate="ziaPattyApp.audio.idAudio" for="field_idAudio">Id Audio</label>
+          <input
+            type="number"
+            class="form-control"
+            name="idAudio"
+            id="field_idAudio"
+            data-cy="idAudio"
+            formControlName="idAudio"
+            [readonly]="true"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.audio.nome" for="field_nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.audio.codiceStato" for="field_codiceStato">Codice Stato</label>
+          <select class="form-control" name="codiceStato" formControlName="codiceStato" id="field_codiceStato" data-cy="codiceStato">
+            <option [ngValue]="null">{{ 'ziaPattyApp.Stato.null' | translate }}</option>
+            <option *ngFor="let stato of statoValues" [value]="stato">{{ 'ziaPattyApp.Stato.' + stato | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.audio.track" for="field_track">Track</label>
+          <div>
+            <div *ngIf="editForm.get('track')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('track')!.value!, editForm.get('trackContentType')!.value!)"
+                jhiTranslate="entity.action.open"
+                >Open</a
+              ><br />
+              <span class="pull-start">{{ editForm.get('trackContentType')!.value }}, {{ byteSize(editForm.get('track')!.value!) }}</span>
+              <button
+                type="button"
+                (click)="editForm.patchValue({ track: undefined, trackContentType: undefined })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_track"
+              data-cy="track"
+              (change)="setFileData($event, 'track', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="track" id="field_track" data-cy="track" formControlName="track" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="trackContentType"
+            id="field_trackContentType"
+            formControlName="trackContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.audio.dataCreazione" for="field_dataCreazione">Data Creazione</label>
+          <div class="d-flex">
+            <input
+              id="field_dataCreazione"
+              data-cy="dataCreazione"
+              type="datetime-local"
+              class="form-control"
+              name="dataCreazione"
+              formControlName="dataCreazione"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.audio.dataUltimaModifica" for="field_dataUltimaModifica"
+            >Data Ultima Modifica</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataUltimaModifica"
+              data-cy="dataUltimaModifica"
+              type="datetime-local"
+              class="form-control"
+              name="dataUltimaModifica"
+              formControlName="dataUltimaModifica"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.audio.eliminato" for="field_eliminato">Eliminato</label>
+          <input type="checkbox" class="form-check" name="eliminato" id="field_eliminato" data-cy="eliminato" formControlName="eliminato" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+{
+  "applications": ["ZiaPatty"],
+  "changelogDate": "20230209000628",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "zp_categoria",
+  "fields": [
+    {
+      "fieldName": "idCategoria",
+      "fieldType": "Long",
+      "options": {
+        "id": true
+      }
+    },
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idCategoriaPadre",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "codiceStato",
+      "fieldType": "Stato",
+      "fieldValues": "BOZZA,PRIVATO,PUBBLICATO"
+    },
+    {
+      "fieldName": "dataCreazione",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "dataUltimaModifica",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "eliminato",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Categoria",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "categoria",
+      "otherEntityRelationshipName": "categorieFiglie",
+      "relationshipName": "padre",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "categoriaFrase",
+      "otherEntityRelationshipName": "categoria",
+      "relationshipName": "categoriaFrase",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "categoria",
+      "otherEntityRelationshipName": "padre",
+      "relationshipName": "categorieFiglie",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,60 @@
+{
+  "applications": ["ZiaPatty"],
+  "changelogDate": "20230209000629",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "zp_frase",
+  "fields": [
+    {
+      "fieldName": "idFrase",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "frase",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codiceStato",
+      "fieldType": "Stato",
+      "fieldValues": "BOZZA,PRIVATO,PUBBLICATO"
+    },
+    {
+      "fieldName": "dataCreazione",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "dataUltimaModifica",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "eliminato",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Frase",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "categoriaFrase",
+      "otherEntityRelationshipName": "frase",
+      "relationshipName": "fraseCategoria",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "fraseAudio",
+      "otherEntityRelationshipName": "frase",
+      "relationshipName": "listaAudio",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "lingua",
+      "otherEntityRelationshipName": "listaFrasi",
+      "relationshipName": "lingua",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

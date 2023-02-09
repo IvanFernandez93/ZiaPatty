@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="frase">
+      <h2 data-cy="fraseDetailsHeading"><span jhiTranslate="ziaPattyApp.frase.detail.title">Frase</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ frase.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.frase.idFrase">Id Frase</span></dt>
+        <dd>
+          <span>{{ frase.idFrase }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.frase.frase">Frase</span></dt>
+        <dd>
+          <span>{{ frase.frase }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.frase.codiceStato">Codice Stato</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'ziaPattyApp.Stato.' + frase.codiceStato }}">{{ frase.codiceStato }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.frase.dataCreazione">Data Creazione</span></dt>
+        <dd>
+          <span>{{ frase.dataCreazione | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.frase.dataUltimaModifica">Data Ultima Modifica</span></dt>
+        <dd>
+          <span>{{ frase.dataUltimaModifica | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.frase.eliminato">Eliminato</span></dt>
+        <dd>
+          <span>{{ frase.eliminato }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.frase.lingua">Lingua</span></dt>
+        <dd>
+          <div *ngIf="frase.lingua">
+            <a [routerLink]="['/lingua', frase.lingua.idLingua, 'view']">{{ frase.lingua.idLingua }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/frase', frase.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

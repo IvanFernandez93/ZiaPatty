@@ -1,0 +1,103 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-lingua-heading" data-cy="LinguaCreateUpdateHeading" jhiTranslate="ziaPattyApp.lingua.home.createOrEditLabel">
+        Create or edit a Lingua
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.idLingua.value !== null">
+          <label class="form-label" jhiTranslate="ziaPattyApp.lingua.idLingua" for="field_idLingua">Id Lingua</label>
+          <input
+            type="number"
+            class="form-control"
+            name="idLingua"
+            id="field_idLingua"
+            data-cy="idLingua"
+            formControlName="idLingua"
+            [readonly]="true"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.lingua.codiceLingua" for="field_codiceLingua">Codice Lingua</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codiceLingua"
+            id="field_codiceLingua"
+            data-cy="codiceLingua"
+            formControlName="codiceLingua"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.lingua.nomeLingua" for="field_nomeLingua">Nome Lingua</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomeLingua"
+            id="field_nomeLingua"
+            data-cy="nomeLingua"
+            formControlName="nomeLingua"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.lingua.dataCreazione" for="field_dataCreazione">Data Creazione</label>
+          <div class="d-flex">
+            <input
+              id="field_dataCreazione"
+              data-cy="dataCreazione"
+              type="datetime-local"
+              class="form-control"
+              name="dataCreazione"
+              formControlName="dataCreazione"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.lingua.dataUltimaModifica" for="field_dataUltimaModifica"
+            >Data Ultima Modifica</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataUltimaModifica"
+              data-cy="dataUltimaModifica"
+              type="datetime-local"
+              class="form-control"
+              name="dataUltimaModifica"
+              formControlName="dataUltimaModifica"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.lingua.eliminato" for="field_eliminato">Eliminato</label>
+          <input type="checkbox" class="form-check" name="eliminato" id="field_eliminato" data-cy="eliminato" formControlName="eliminato" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

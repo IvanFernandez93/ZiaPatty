@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="audio">
+      <h2 data-cy="audioDetailsHeading"><span jhiTranslate="ziaPattyApp.audio.detail.title">Audio</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ziaPattyApp.audio.idAudio">Id Audio</span></dt>
+        <dd>
+          <span>{{ audio.idAudio }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.audio.nome">Nome</span></dt>
+        <dd>
+          <span>{{ audio.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.audio.codiceStato">Codice Stato</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'ziaPattyApp.Stato.' + audio.codiceStato }}">{{ audio.codiceStato }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.audio.track">Track</span></dt>
+        <dd>
+          <div *ngIf="audio.track">
+            <a (click)="openFile(audio.track, audio.trackContentType)" jhiTranslate="entity.action.open">Open</a>
+            {{ audio.trackContentType }}, {{ byteSize(audio.track) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.audio.dataCreazione">Data Creazione</span></dt>
+        <dd>
+          <span>{{ audio.dataCreazione | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.audio.dataUltimaModifica">Data Ultima Modifica</span></dt>
+        <dd>
+          <span>{{ audio.dataUltimaModifica | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.audio.eliminato">Eliminato</span></dt>
+        <dd>
+          <span>{{ audio.eliminato }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/audio', audio.idAudio, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

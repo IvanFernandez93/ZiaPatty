@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-frase-heading" data-cy="FraseCreateUpdateHeading" jhiTranslate="ziaPattyApp.frase.home.createOrEditLabel">
+        Create or edit a Frase
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.frase.idFrase" for="field_idFrase">Id Frase</label>
+          <input type="number" class="form-control" name="idFrase" id="field_idFrase" data-cy="idFrase" formControlName="idFrase" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.frase.frase" for="field_frase">Frase</label>
+          <input type="text" class="form-control" name="frase" id="field_frase" data-cy="frase" formControlName="frase" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.frase.codiceStato" for="field_codiceStato">Codice Stato</label>
+          <select class="form-control" name="codiceStato" formControlName="codiceStato" id="field_codiceStato" data-cy="codiceStato">
+            <option [ngValue]="null">{{ 'ziaPattyApp.Stato.null' | translate }}</option>
+            <option *ngFor="let stato of statoValues" [value]="stato">{{ 'ziaPattyApp.Stato.' + stato | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.frase.dataCreazione" for="field_dataCreazione">Data Creazione</label>
+          <div class="d-flex">
+            <input
+              id="field_dataCreazione"
+              data-cy="dataCreazione"
+              type="datetime-local"
+              class="form-control"
+              name="dataCreazione"
+              formControlName="dataCreazione"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.frase.dataUltimaModifica" for="field_dataUltimaModifica"
+            >Data Ultima Modifica</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataUltimaModifica"
+              data-cy="dataUltimaModifica"
+              type="datetime-local"
+              class="form-control"
+              name="dataUltimaModifica"
+              formControlName="dataUltimaModifica"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.frase.eliminato" for="field_eliminato">Eliminato</label>
+          <input type="checkbox" class="form-check" name="eliminato" id="field_eliminato" data-cy="eliminato" formControlName="eliminato" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.frase.lingua" for="field_lingua">Lingua</label>
+          <select
+            class="form-control"
+            id="field_lingua"
+            data-cy="lingua"
+            name="lingua"
+            formControlName="lingua"
+            [compareWith]="compareLingua"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="linguaOption" *ngFor="let linguaOption of linguasSharedCollection">{{ linguaOption.idLingua }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

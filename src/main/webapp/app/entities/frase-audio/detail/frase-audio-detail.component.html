@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fraseAudio">
+      <h2 data-cy="fraseAudioDetailsHeading"><span jhiTranslate="ziaPattyApp.fraseAudio.detail.title">Frase Audio</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fraseAudio.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.fraseAudio.idCategoria">Id Categoria</span></dt>
+        <dd>
+          <span>{{ fraseAudio.idCategoria }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.fraseAudio.idFrase">Id Frase</span></dt>
+        <dd>
+          <span>{{ fraseAudio.idFrase }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.fraseAudio.frase">Frase</span></dt>
+        <dd>
+          <div *ngIf="fraseAudio.frase">
+            <a [routerLink]="['/frase', fraseAudio.frase.id, 'view']">{{ fraseAudio.frase.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.fraseAudio.audio">Audio</span></dt>
+        <dd>
+          <div *ngIf="fraseAudio.audio">
+            <a [routerLink]="['/audio', fraseAudio.audio.idAudio, 'view']">{{ fraseAudio.audio.idAudio }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/frase-audio', fraseAudio.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

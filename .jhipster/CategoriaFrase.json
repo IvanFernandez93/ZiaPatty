@@ -1,0 +1,37 @@
+{
+  "applications": ["ZiaPatty"],
+  "changelogDate": "20230209000632",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "zp_catgoria_frase",
+  "fields": [
+    {
+      "fieldName": "idCategoria",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "idFrase",
+      "fieldType": "Long"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CategoriaFrase",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "categoria",
+      "otherEntityRelationshipName": "categoriaFrase",
+      "relationshipName": "categoria",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "frase",
+      "otherEntityRelationshipName": "fraseCategoria",
+      "relationshipName": "frase",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

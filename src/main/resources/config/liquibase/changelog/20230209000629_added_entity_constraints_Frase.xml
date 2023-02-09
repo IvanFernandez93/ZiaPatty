@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Frase.
+    -->
+    <changeSet id="20230209000629-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="lingua_id_lingua"
+                                 baseTableName="zp_frase"
+                                 constraintName="fk_zp_frase__lingua_id"
+                                 referencedColumnNames="id_lingua"
+                                 referencedTableName="zp_lingua"/>
+    </changeSet>
+</databaseChangeLog>
