@@ -1,0 +1,37 @@
+{
+  "applications": ["ZiaPatty"],
+  "changelogDate": "20230209000631",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "zp_frase_audio",
+  "fields": [
+    {
+      "fieldName": "idCategoria",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "idFrase",
+      "fieldType": "Long"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "FraseAudio",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "frase",
+      "otherEntityRelationshipName": "listaAudio",
+      "relationshipName": "frase",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "audio",
+      "otherEntityRelationshipName": "listaFrasi",
+      "relationshipName": "audio",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,50 @@
+{
+  "applications": ["ZiaPatty"],
+  "changelogDate": "20230209000630",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "zp_lingua",
+  "fields": [
+    {
+      "fieldName": "idLingua",
+      "fieldType": "Long",
+      "options": {
+        "id": true
+      }
+    },
+    {
+      "fieldName": "codiceLingua",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomeLingua",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataCreazione",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "dataUltimaModifica",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "eliminato",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Lingua",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "frase",
+      "otherEntityRelationshipName": "lingua",
+      "relationshipName": "listaFrasi",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

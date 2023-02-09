@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity CategoriaFrase.
+    -->
+    <changeSet id="20230209000632-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="categoria_id_categoria"
+                                 baseTableName="zp_catgoria_frase"
+                                 constraintName="fk_zp_catgoria_frase__categoria_id"
+                                 referencedColumnNames="id_categoria"
+                                 referencedTableName="zp_categoria"/>
+
+        <addForeignKeyConstraint baseColumnNames="frase_id"
+                                 baseTableName="zp_catgoria_frase"
+                                 constraintName="fk_zp_catgoria_frase__frase_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="zp_frase"/>
+    </changeSet>
+</databaseChangeLog>

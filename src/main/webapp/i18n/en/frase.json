@@ -1,0 +1,32 @@
+{
+  "ziaPattyApp": {
+    "frase": {
+      "home": {
+        "title": "Frases",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Frase",
+        "createOrEditLabel": "Create or edit a Frase",
+        "notFound": "No Frases found"
+      },
+      "created": "A new Frase is created with identifier {{ param }}",
+      "updated": "A Frase is updated with identifier {{ param }}",
+      "deleted": "A Frase is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Frase {{ id }}?"
+      },
+      "detail": {
+        "title": "Frase"
+      },
+      "id": "ID",
+      "idFrase": "Id Frase",
+      "frase": "Frase",
+      "codiceStato": "Codice Stato",
+      "dataCreazione": "Data Creazione",
+      "dataUltimaModifica": "Data Ultima Modifica",
+      "eliminato": "Eliminato",
+      "fraseCategoria": "Frase Categoria",
+      "listaAudio": "Lista Audio",
+      "lingua": "Lingua"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity FraseAudio.
+    -->
+    <changeSet id="20230209000631-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="frase_id"
+                                 baseTableName="zp_frase_audio"
+                                 constraintName="fk_zp_frase_audio__frase_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="zp_frase"/>
+
+        <addForeignKeyConstraint baseColumnNames="audio_id_audio"
+                                 baseTableName="zp_frase_audio"
+                                 constraintName="fk_zp_frase_audio__audio_id"
+                                 referencedColumnNames="id_audio"
+                                 referencedTableName="zp_audio"/>
+    </changeSet>
+</databaseChangeLog>

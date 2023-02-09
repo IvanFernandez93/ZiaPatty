@@ -1,0 +1,141 @@
+<div>
+  <h2 id="page-heading" data-cy="CategoriaHeading">
+    <span jhiTranslate="ziaPattyApp.categoria.home.title">Categorias</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="ziaPattyApp.categoria.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-categoria"
+        [routerLink]="['/categoria/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="ziaPattyApp.categoria.home.createLabel"> Create a new Categoria </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="categorias?.length === 0">
+    <span jhiTranslate="ziaPattyApp.categoria.home.notFound">No Categorias found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="categorias && categorias.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="idCategoria">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.categoria.idCategoria">Id Categoria</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nome">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.categoria.nome">Nome</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="idCategoriaPadre">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.categoria.idCategoriaPadre">Id Categoria Padre</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codiceStato">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.categoria.codiceStato">Codice Stato</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dataCreazione">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.categoria.dataCreazione">Data Creazione</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dataUltimaModifica">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.categoria.dataUltimaModifica">Data Ultima Modifica</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="eliminato">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.categoria.eliminato">Eliminato</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="categorieFiglie.idCategoria">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.categoria.categorieFiglie">Categorie Figlie</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody
+        infinite-scroll
+        (scrolled)="loadPage(page + 1)"
+        [infiniteScrollDisabled]="page - 1 >= links['last']"
+        [infiniteScrollDistance]="0"
+      >
+        <tr *ngFor="let categoria of categorias; trackBy: trackIdCategoria" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/categoria', categoria.idCategoria, 'view']">{{ categoria.idCategoria }}</a>
+          </td>
+          <td>{{ categoria.nome }}</td>
+          <td>{{ categoria.idCategoriaPadre }}</td>
+          <td jhiTranslate="{{ 'ziaPattyApp.Stato.' + categoria.codiceStato }}">{{ categoria.codiceStato }}</td>
+          <td>{{ categoria.dataCreazione | formatMediumDatetime }}</td>
+          <td>{{ categoria.dataUltimaModifica | formatMediumDatetime }}</td>
+          <td>{{ categoria.eliminato }}</td>
+          <td>
+            <div *ngIf="categoria.categorieFiglie">
+              <a [routerLink]="['/categoria', categoria.categorieFiglie.idCategoria, 'view']">{{
+                categoria.categorieFiglie.idCategoria
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/categoria', categoria.idCategoria, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/categoria', categoria.idCategoria, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(categoria)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

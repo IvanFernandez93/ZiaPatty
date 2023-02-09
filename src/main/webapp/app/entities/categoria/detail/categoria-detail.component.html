@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="categoria">
+      <h2 data-cy="categoriaDetailsHeading"><span jhiTranslate="ziaPattyApp.categoria.detail.title">Categoria</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ziaPattyApp.categoria.idCategoria">Id Categoria</span></dt>
+        <dd>
+          <span>{{ categoria.idCategoria }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.categoria.nome">Nome</span></dt>
+        <dd>
+          <span>{{ categoria.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.categoria.idCategoriaPadre">Id Categoria Padre</span></dt>
+        <dd>
+          <span>{{ categoria.idCategoriaPadre }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.categoria.codiceStato">Codice Stato</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'ziaPattyApp.Stato.' + categoria.codiceStato }}">{{ categoria.codiceStato }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.categoria.dataCreazione">Data Creazione</span></dt>
+        <dd>
+          <span>{{ categoria.dataCreazione | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.categoria.dataUltimaModifica">Data Ultima Modifica</span></dt>
+        <dd>
+          <span>{{ categoria.dataUltimaModifica | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.categoria.eliminato">Eliminato</span></dt>
+        <dd>
+          <span>{{ categoria.eliminato }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.categoria.categorieFiglie">Categorie Figlie</span></dt>
+        <dd>
+          <div *ngIf="categoria.categorieFiglie">
+            <a [routerLink]="['/categoria', categoria.categorieFiglie.idCategoria, 'view']">{{ categoria.categorieFiglie.idCategoria }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/categoria', categoria.idCategoria, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

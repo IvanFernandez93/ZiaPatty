@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: INFO
     tech.jhipster: INFO
-    it.ziapatty: INFO
+    com.mycompany.myapp: INFO
 
 management:
   metrics:

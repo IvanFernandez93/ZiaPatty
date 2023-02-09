@@ -1,0 +1,117 @@
+<div>
+  <h2 id="page-heading" data-cy="FraseAudioHeading">
+    <span jhiTranslate="ziaPattyApp.fraseAudio.home.title">Frase Audios</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="ziaPattyApp.fraseAudio.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-frase-audio"
+        [routerLink]="['/frase-audio/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="ziaPattyApp.fraseAudio.home.createLabel"> Create a new Frase Audio </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="fraseAudios?.length === 0">
+    <span jhiTranslate="ziaPattyApp.fraseAudio.home.notFound">No Frase Audios found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="fraseAudios && fraseAudios.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="idCategoria">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.fraseAudio.idCategoria">Id Categoria</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="idFrase">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.fraseAudio.idFrase">Id Frase</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="frase.id">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.fraseAudio.frase">Frase</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="audio.idAudio">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.fraseAudio.audio">Audio</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fraseAudio of fraseAudios; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/frase-audio', fraseAudio.id, 'view']">{{ fraseAudio.id }}</a>
+          </td>
+          <td>{{ fraseAudio.idCategoria }}</td>
+          <td>{{ fraseAudio.idFrase }}</td>
+          <td>
+            <div *ngIf="fraseAudio.frase">
+              <a [routerLink]="['/frase', fraseAudio.frase.id, 'view']">{{ fraseAudio.frase.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="fraseAudio.audio">
+              <a [routerLink]="['/audio', fraseAudio.audio.idAudio, 'view']">{{ fraseAudio.audio.idAudio }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/frase-audio', fraseAudio.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/frase-audio', fraseAudio.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(fraseAudio)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
