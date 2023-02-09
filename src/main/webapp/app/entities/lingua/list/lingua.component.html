@@ -1,0 +1,116 @@
+<div>
+  <h2 id="page-heading" data-cy="LinguaHeading">
+    <span jhiTranslate="ziaPattyApp.lingua.home.title">Linguas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="ziaPattyApp.lingua.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-lingua"
+        [routerLink]="['/lingua/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="ziaPattyApp.lingua.home.createLabel"> Create a new Lingua </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="linguas?.length === 0">
+    <span jhiTranslate="ziaPattyApp.lingua.home.notFound">No Linguas found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="linguas && linguas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="idLingua">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.lingua.idLingua">Id Lingua</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codiceLingua">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.lingua.codiceLingua">Codice Lingua</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nomeLingua">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.lingua.nomeLingua">Nome Lingua</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dataCreazione">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.lingua.dataCreazione">Data Creazione</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dataUltimaModifica">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.lingua.dataUltimaModifica">Data Ultima Modifica</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="eliminato">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.lingua.eliminato">Eliminato</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lingua of linguas; trackBy: trackIdLingua" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/lingua', lingua.idLingua, 'view']">{{ lingua.idLingua }}</a>
+          </td>
+          <td>{{ lingua.codiceLingua }}</td>
+          <td>{{ lingua.nomeLingua }}</td>
+          <td>{{ lingua.dataCreazione | formatMediumDatetime }}</td>
+          <td>{{ lingua.dataUltimaModifica | formatMediumDatetime }}</td>
+          <td>{{ lingua.eliminato }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/lingua', lingua.idLingua, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/lingua', lingua.idLingua, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(lingua)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

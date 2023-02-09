@@ -1,0 +1,10 @@
+{
+  "ziaPattyApp": {
+    "Stato": {
+      "null": "",
+      "BOZZA": "BOZZA",
+      "PRIVATO": "PRIVATO",
+      "PUBBLICATO": "PUBBLICATO"
+    }
+  }
+}

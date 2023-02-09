@@ -1,0 +1,11 @@
+id_categoria;nome;id_categoria_padre;codice_stato;data_creazione;data_ultima_modifica;eliminato
+1;protocol Buckinghamshire;63131;BOZZA;2023-02-08T12:53:49;2023-02-08T18:53:55;false
+2;e-services Versatile Kong;39578;BOZZA;2023-02-08T20:38:48;2023-02-08T20:06:38;false
+3;calculating Creative Cheese;6949;PUBBLICATO;2023-02-08T15:42:41;2023-02-08T02:32:12;true
+4;blockchains cohesive;24839;PUBBLICATO;2023-02-08T17:57:47;2023-02-08T02:12:47;false
+5;Senior back-end productize;35305;PUBBLICATO;2023-02-08T07:31:20;2023-02-08T10:03:06;false
+6;eyeballs Chief Metal;81431;PRIVATO;2023-02-08T21:36:49;2023-02-08T00:46:19;true
+7;JBOD Awesome Mouse;726;BOZZA;2023-02-08T21:20:05;2023-02-08T16:11:42;true
+8;payment Jewelery Directives;67396;PRIVATO;2023-02-08T07:53:55;2023-02-08T10:03:03;false
+9;didactic Lithuania;11295;PRIVATO;2023-02-08T08:31:29;2023-02-08T03:26:45;true
+10;Liaison tertiary;1320;PRIVATO;2023-02-08T11:10:55;2023-02-08T20:01:29;true

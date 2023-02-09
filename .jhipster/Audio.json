@@ -1,0 +1,56 @@
+{
+  "applications": ["ZiaPatty"],
+  "changelogDate": "20230209000627",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "zp_audio",
+  "fields": [
+    {
+      "fieldName": "idAudio",
+      "fieldType": "Long",
+      "options": {
+        "id": true
+      }
+    },
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codiceStato",
+      "fieldType": "Stato",
+      "fieldValues": "BOZZA,PRIVATO,PUBBLICATO"
+    },
+    {
+      "fieldName": "track",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "dataCreazione",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "dataUltimaModifica",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "eliminato",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Audio",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "fraseAudio",
+      "otherEntityRelationshipName": "audio",
+      "relationshipName": "listaFrasi",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

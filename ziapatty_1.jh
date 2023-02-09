@@ -2,7 +2,7 @@ application {
  	config {
     	baseName ZiaPatty
     }
-    entities Audio, Categoria, Frase, Lingua, FraseLingua, FraseAudio, CategoriaFrase
+    entities Audio, Categoria, Frase, Lingua, FraseAudio, CategoriaFrase
     dto * with mapstruct
     service * with serviceClass 
 }
@@ -60,5 +60,4 @@ relationship OneToMany {
     Lingua{listaFrasi} to Frase
 }
 paginate Categoria, Frase with infinite-scroll
-paginate Job with pagination
-service all with serviceImpl except Employee, Job
+service all with serviceImpl

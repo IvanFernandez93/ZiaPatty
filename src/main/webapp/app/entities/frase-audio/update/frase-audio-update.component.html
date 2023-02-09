@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-frase-audio-heading" data-cy="FraseAudioCreateUpdateHeading" jhiTranslate="ziaPattyApp.fraseAudio.home.createOrEditLabel">
+        Create or edit a Frase Audio
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.fraseAudio.idCategoria" for="field_idCategoria">Id Categoria</label>
+          <input
+            type="number"
+            class="form-control"
+            name="idCategoria"
+            id="field_idCategoria"
+            data-cy="idCategoria"
+            formControlName="idCategoria"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.fraseAudio.idFrase" for="field_idFrase">Id Frase</label>
+          <input type="number" class="form-control" name="idFrase" id="field_idFrase" data-cy="idFrase" formControlName="idFrase" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.fraseAudio.frase" for="field_frase">Frase</label>
+          <select class="form-control" id="field_frase" data-cy="frase" name="frase" formControlName="frase" [compareWith]="compareFrase">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="fraseOption" *ngFor="let fraseOption of frasesSharedCollection">{{ fraseOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ziaPattyApp.fraseAudio.audio" for="field_audio">Audio</label>
+          <select class="form-control" id="field_audio" data-cy="audio" name="audio" formControlName="audio" [compareWith]="compareAudio">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="audioOption" *ngFor="let audioOption of audioSharedCollection">{{ audioOption.idAudio }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

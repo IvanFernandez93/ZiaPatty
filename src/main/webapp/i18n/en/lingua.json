@@ -1,0 +1,29 @@
+{
+  "ziaPattyApp": {
+    "lingua": {
+      "home": {
+        "title": "Linguas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Lingua",
+        "createOrEditLabel": "Create or edit a Lingua",
+        "notFound": "No Linguas found"
+      },
+      "created": "A new Lingua is created with identifier {{ param }}",
+      "updated": "A Lingua is updated with identifier {{ param }}",
+      "deleted": "A Lingua is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Lingua {{ id }}?"
+      },
+      "detail": {
+        "title": "Lingua"
+      },
+      "idLingua": "Id Lingua",
+      "codiceLingua": "Codice Lingua",
+      "nomeLingua": "Nome Lingua",
+      "dataCreazione": "Data Creazione",
+      "dataUltimaModifica": "Data Ultima Modifica",
+      "eliminato": "Eliminato",
+      "listaFrasi": "Lista Frasi"
+    }
+  }
+}

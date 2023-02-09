@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="lingua">
+      <h2 data-cy="linguaDetailsHeading"><span jhiTranslate="ziaPattyApp.lingua.detail.title">Lingua</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ziaPattyApp.lingua.idLingua">Id Lingua</span></dt>
+        <dd>
+          <span>{{ lingua.idLingua }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.lingua.codiceLingua">Codice Lingua</span></dt>
+        <dd>
+          <span>{{ lingua.codiceLingua }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.lingua.nomeLingua">Nome Lingua</span></dt>
+        <dd>
+          <span>{{ lingua.nomeLingua }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.lingua.dataCreazione">Data Creazione</span></dt>
+        <dd>
+          <span>{{ lingua.dataCreazione | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.lingua.dataUltimaModifica">Data Ultima Modifica</span></dt>
+        <dd>
+          <span>{{ lingua.dataUltimaModifica | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="ziaPattyApp.lingua.eliminato">Eliminato</span></dt>
+        <dd>
+          <span>{{ lingua.eliminato }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/lingua', lingua.idLingua, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

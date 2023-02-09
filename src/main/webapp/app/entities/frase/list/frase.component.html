@@ -1,0 +1,129 @@
+<div>
+  <h2 id="page-heading" data-cy="FraseHeading">
+    <span jhiTranslate="ziaPattyApp.frase.home.title">Frases</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="ziaPattyApp.frase.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-frase"
+        [routerLink]="['/frase/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="ziaPattyApp.frase.home.createLabel"> Create a new Frase </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="frases?.length === 0">
+    <span jhiTranslate="ziaPattyApp.frase.home.notFound">No Frases found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="frases && frases.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="idFrase">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.frase.idFrase">Id Frase</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="frase">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.frase.frase">Frase</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codiceStato">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.frase.codiceStato">Codice Stato</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dataCreazione">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.frase.dataCreazione">Data Creazione</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dataUltimaModifica">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.frase.dataUltimaModifica">Data Ultima Modifica</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="eliminato">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.frase.eliminato">Eliminato</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lingua.idLingua">
+            <div class="d-flex">
+              <span jhiTranslate="ziaPattyApp.frase.lingua">Lingua</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody
+        infinite-scroll
+        (scrolled)="loadPage(page + 1)"
+        [infiniteScrollDisabled]="page - 1 >= links['last']"
+        [infiniteScrollDistance]="0"
+      >
+        <tr *ngFor="let frase of frases; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/frase', frase.id, 'view']">{{ frase.id }}</a>
+          </td>
+          <td>{{ frase.idFrase }}</td>
+          <td>{{ frase.frase }}</td>
+          <td jhiTranslate="{{ 'ziaPattyApp.Stato.' + frase.codiceStato }}">{{ frase.codiceStato }}</td>
+          <td>{{ frase.dataCreazione | formatMediumDatetime }}</td>
+          <td>{{ frase.dataUltimaModifica | formatMediumDatetime }}</td>
+          <td>{{ frase.eliminato }}</td>
+          <td>
+            <div *ngIf="frase.lingua">
+              <a [routerLink]="['/lingua', frase.lingua.idLingua, 'view']">{{ frase.lingua.idLingua }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/frase', frase.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/frase', frase.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(frase)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
